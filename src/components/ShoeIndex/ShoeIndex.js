@@ -14,15 +14,24 @@ const ShoeIndex = ({ sortId, setSortId }) => {
     <Wrapper>
       <MainColumn>
         <Header>
-          <Title>Running</Title>
-          <Select
-            label='Sort'
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value='newest'>Newest Releases</option>
-            <option value='price'>Price</option>
-          </Select>
+          <BreadcrumbsWrapper>
+            <Breadcrumbs>
+              <Breadcrumbs.Crumb href='/'>Home</Breadcrumbs.Crumb>
+              <Breadcrumbs.Crumb href='/sale'>Sale</Breadcrumbs.Crumb>
+              <Breadcrumbs.Crumb href='/sale/shoes'>Shoes</Breadcrumbs.Crumb>
+            </Breadcrumbs>
+          </BreadcrumbsWrapper>
+          <TitleWrapper>
+            <Title>Running</Title>
+            <Select
+              label='Sort'
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value='newest'>Newest Releases</option>
+              <option value='price'>Price</option>
+            </Select>
+          </TitleWrapper>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
@@ -49,6 +58,10 @@ const Wrapper = styled.div`
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: none;
+  }
 `;
 
 const MainColumn = styled.div`
@@ -59,6 +72,27 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: block;
+  }
+`;
+
+const BreadcrumbsWrapper = styled.div`
+  display: none;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: block;
+  }
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 const Title = styled.h2`
